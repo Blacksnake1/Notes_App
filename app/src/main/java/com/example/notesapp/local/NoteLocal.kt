@@ -1,14 +1,15 @@
 package com.example.notesapp.local
 
 import com.example.notesapp.NotesApp
+import com.example.notesapp.db.NoteDatabase
 import com.example.notesapp.model.NotesModel
 
 
 class NoteLocal {
-    private val noteDatabase = com.example.notesapp.db.NoteDatabase.getInstance(NotesApp.getInstance().applicationContext)
+    private val noteDatabase = NoteDatabase.getInstance(NotesApp.getInstance())
 
-    fun getAllNotes() : MutableList<NotesModel>{
-        return noteDatabase.noteDao().getAllNotes().toMutableList()
+    fun getAllNotes() : List<NotesModel>{
+        return noteDatabase.noteDao().getAllNotes()
     }
 
     fun insertNote(notesModel: NotesModel) : Long{

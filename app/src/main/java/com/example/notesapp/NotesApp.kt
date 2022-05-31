@@ -8,6 +8,7 @@ class NotesApp: Application() {
         super.onCreate()
         instance= this
     }
+
     companion object{
         @Volatile
         private var instance : NotesApp? = null

@@ -28,7 +28,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/ed_create_title"
+                    android:id="@+id/edit_create_title"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:background="@drawable/background_btn"
@@ -44,7 +44,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/ip1">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/ed_create_sub"
+                    android:id="@+id/edit_create_sub"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:background="@drawable/background_btn"
@@ -87,7 +87,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/ip2">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/ed_create_note"
+                    android:id="@+id/edit_create_note"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/background_btn"
