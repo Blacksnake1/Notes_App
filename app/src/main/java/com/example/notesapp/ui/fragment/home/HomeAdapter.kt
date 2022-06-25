@@ -1,15 +1,10 @@
-package com.example.notesapp.ui.fragment.Home
+package com.example.notesapp.ui.fragment.home
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.notesapp.R
-import com.example.notesapp.databinding.FragmentCreatNotesBinding
 import com.example.notesapp.databinding.ItemNoteBinding
 import com.example.notesapp.model.NotesModel
 
@@ -18,20 +13,20 @@ class HomeAdapter(
     var noteList: MutableList<NotesModel>,
     var onClickItem: (item: NotesModel) -> Unit
 ) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
-    class ViewHolder(val binding: ItemNoteBinding) : RecyclerView.ViewHolder(binding.root) {
-    }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            ItemNoteBinding.inflate(LayoutInflater.from(context), parent, false)
-        )
 
+    class ViewHolder(val binding: ItemNoteBinding) : RecyclerView.ViewHolder(binding.root)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val binding =  ItemNoteBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var data = noteList[position]
-        holder.binding.tvItemTitle.text = data?.title
-        holder.binding.tvItemSubtitle.text = data?.subtitle
-        holder.binding.tvItemContent.text = data?.note
+        val data = noteList[position]
+
+        holder.binding.tvItemTitle.text = data.title
+        holder.binding.tvItemSubtitle.text = data.subtitle
+        holder.binding.tvItemContent.text = data.note
         holder.binding.tvItemDate.text = data.date
         holder.itemView.setOnClickListener {
             onClickItem.invoke(data)

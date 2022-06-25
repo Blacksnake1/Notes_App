@@ -19,7 +19,7 @@
         android:theme="@style/Theme.NotesApp"
         tools:targetApi="31">
         <activity
-            android:name=".ui.Activity.SpashScreen.SplashScreenActivity"
+            android:name=".ui.Activity.spashScreen.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +28,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.Activity.Home.MainActivity"
+            android:name=".ui.Activity.home.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Activity.DetailNoteActivity"
             android:exported="false" />
     </application>
 

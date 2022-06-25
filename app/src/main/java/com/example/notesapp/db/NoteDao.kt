@@ -7,7 +7,7 @@ import com.example.notesapp.model.NotesModel
 @Dao
 interface NoteDao {
     @Query ("SELECT * FROM Notes")
-    fun getAllNotes(): LiveData<NotesModel>
+    fun getAllNotes(): List<NotesModel>
 
     @Insert (onConflict = OnConflictStrategy.REPLACE)
     fun insertNote (notesModel: NotesModel) : Long

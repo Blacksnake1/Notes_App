@@ -1,5 +1,6 @@
-package com.example.notesapp.ui.fragment.Home
+package com.example.notesapp.ui.fragment.home
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,11 +18,14 @@ class HomeViewModel(
     var isLoading = MutableLiveData<Boolean>()
     var error = MutableLiveData<String>()
 
+
+
     fun getAllNote(){
         isLoading.postValue(true)
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 isLoading.postValue(false)
+                Log.e("========> ", "getAllNotes: ${noteRepository.getAllNotes().size} ")
                 try {
                     noteList.postValue(noteRepository.getAllNotes())
                 }catch (e : Exception){

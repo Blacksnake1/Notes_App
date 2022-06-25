@@ -1,4 +1,4 @@
-package com.example.notesapp.ui.fragment.Home
+package com.example.notesapp.ui.fragment.home
 
 import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
@@ -16,22 +16,24 @@ import com.example.notesapp.R
 import com.example.notesapp.databinding.FragmentHomeBinding
 import com.example.notesapp.model.NotesModel
 import com.example.notesapp.ui.Activity.DetailNoteActivity
-import kotlin.math.log
 
 class HomeFragment : Fragment() {
     private val viewModel by lazy {
         ViewModelProvider(this)[HomeViewModel::class.java]
     }
 
+
     private lateinit var binding: FragmentHomeBinding
     private lateinit var homeAdapter: HomeAdapter
     var listnote = ArrayList<NotesModel>()
 
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
@@ -41,14 +43,17 @@ class HomeFragment : Fragment() {
         setupUI()
         setupEvent()
         setupObserver()
+
     }
 
     private fun setupObserver() {
-        viewModel.noteList.observe(viewLifecycleOwner) { noteList ->
-            Log.e("========> ", "setupUI: ${listnote.size} ")
-            noteList.clear()
-            noteList.addAll(listnote)
-            homeAdapter?.notifyDataSetChanged()
+        viewModel.noteList.observe(viewLifecycleOwner) {
+            Log.e("========> ", "noteList: ${it.size} ")
+//            it là list dữ liệu mới, còn listnote là list dữ liệu cũ. Mỗi lần resume là nó sẽ xoá
+//            dữ liệu cũ và cập nhật mới
+            listnote.clear()
+            listnote.addAll(it)
+            homeAdapter.notifyDataSetChanged()
         }
 
         viewModel.isLoading.observe(viewLifecycleOwner){
@@ -75,10 +80,12 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(it)
                 .navigate(R.id.action_homeFragment_to_creatNotesFragment)
         }
+
+
     }
 
     private fun setupRcvNotes() {
-        homeAdapter = HomeAdapter(requireContext(), listnote, ::onClickItem)
+        homeAdapter = HomeAdapter(requireContext(), listnote,::onClickItem )
         binding.rcvNotes.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = homeAdapter
@@ -88,8 +95,13 @@ class HomeFragment : Fragment() {
 
     fun onClickItem(notesModel: NotesModel) {
         var intent = Intent(requireContext(), DetailNoteActivity::class.java)
-        intent.putExtra("NOTEDETAIL", notesModel.id)
+        intent.putExtra("NOTEDETAIL", notesModel)
+        startActivity(intent)
+
+
     }
+
+
 }
 
 

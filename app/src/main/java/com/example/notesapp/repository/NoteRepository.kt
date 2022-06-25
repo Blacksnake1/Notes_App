@@ -1,12 +1,14 @@
 package com.example.notesapp.repository
 
+import androidx.lifecycle.LiveData
 import com.example.notesapp.local.NoteLocal
 import com.example.notesapp.model.NotesModel
 
 class NoteRepository {
     private var notesLocal: NoteLocal = NoteLocal()
 
-    fun getAllNotes() : MutableList<NotesModel>{
+    fun getAllNotes() : MutableList<NotesModel> {
+
         return notesLocal.getAllNotes().toMutableList()
     }
 

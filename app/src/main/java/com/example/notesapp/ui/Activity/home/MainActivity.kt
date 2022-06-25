@@ -1,4 +1,4 @@
-package com.example.notesapp.ui.Activity.Home
+package com.example.notesapp.ui.Activity.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -18,8 +18,15 @@ class CreatNotesVM(
     var isLoading = MutableLiveData<Boolean>()
 
     fun insertNotes(notesModel: NotesModel) {
-//khi có dữ liệu thì isloading sẽ cho chạy dòng cụm launch, còn khi nó false thì chạy catch
-//        setValue chay trên mainthread, postvalue chạy trên backgroud thread
+// ban đầu nó sẽ hiện cái isloading quay quay, sau đo khi dữ liệu đã đổ về thì isloading sẽ ẩn đi
+// và chạy vào ở try..catch.
+
+//        setValue chay trên mainthread, postvalue chạy trên backgroud thread.
+
+//        noteInsertValue được gắn kiểu Long và được lấy dữ liệu của dòng 31 hoặc có thể hiểu là
+//        noteInsertValue sẽ đẩy dữ liệu lên thằng quan sát nó giá trị
+//        là notesResponsitory.insertNote(notesModel)
+
         isLoading.postValue(true)
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
